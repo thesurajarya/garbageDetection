@@ -1,0 +1,22 @@
+<form action="/submit_complaint" method="POST" enctype="multipart/form-data">
+  <input type="text" name="name" placeholder="Your Name" required><br>
+  <input type="text" name="phone" placeholder="Phone Number" required><br>
+  <select name="issue_type" required>
+    <option value="Garbage">Garbage</option>
+    <option value="Sewer">Sewer</option>
+    <option value="Other">Other</option>
+  </select><br>
+  <input type="text" name="location" placeholder="Location" required><br>
+  <input type="file" name="image" required><br>
+  <button type="submit">Submit Complaint</button>
+</form>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
