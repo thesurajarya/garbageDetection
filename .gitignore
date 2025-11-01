@@ -1,0 +1,118 @@
+# Generic
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+._*
+.idea/
+.vscode/
+.vs/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.pytest_cache/
+.cache/
+migrations/
+*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+
+# Virtual environments
+venv/
+env/
+env.bak/
+.venv/
+.venv.bak/
+.Python
+
+# Package manager / lock files (optional to ignore)
+pipfile.lock
+poetry.lock
+
+# Byte-compiled / C extensions
+*.so
+*.dylib
+*.dll
+
+# Test / coverage
+.coverage
+coverage.xml
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb_checkpoints
+*.nbconvert.ipynb
+
+# Logs and runtime files
+*.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+
+# Secrets / environment
+.env
+.env.*.local
+secrets.json
+credentials.json
+
+# Data, models, weights and large files (do not commit)
+data/
+datasets/
+raw_data/
+processed_data/
+*.h5
+*.hdf5
+*.npz
+*.npy
+*.csv
+*.tar.gz
+*.zip
+models/
+weights/
+checkpoints/
+*.ckpt
+*.pth
+*.pt
+
+# Machine learning frameworks
+tensorboard/
+runs/
+.saved_models/
+mlruns/
+
+# IDE / Editor specific
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.iml
+
+# OS generated files
+ehthumbs.db
+Icon?
+~$*
+
+# Docker
+docker-compose.override.yml
+.env.docker
+
+# Binary / build artifacts
+*.exe
+*.dll
+*.class
+*.jar
+
+# Git LFS pointer files (if using LFS, don't accidentally commit large files)
+*.bin
+*.dat
+
+# Keep local overrides (uncomment to use)
+# local_settings.py
