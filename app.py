@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request, redirect, session, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
-import sqlite3
-import os
+import sqlite3, os, uuid
 
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
 
+UPLOAD_FOLDER = "static/uploads"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 DB_PATH = "database.db"
 
 def get_db():
@@ -13,16 +14,13 @@ def get_db():
     conn.row_factory = sqlite3.Row
     return conn
 
-# Home Page
+# ---------------- AUTH ROUTES ---------------- #
 @app.route('/')
 def home():
     if "user_id" in session:
-        if session["role"] == "admin":
-            return redirect(url_for("dashboard"))
-        return redirect(url_for("index"))
+        return redirect(url_for("dashboard" if session["role"] == "admin" else "index"))
     return redirect(url_for("login"))
 
-# Register Page
 @app.route('/register', methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -39,7 +37,6 @@ def register():
             return "Username already exists!"
     return render_template("register.html")
 
-# Login Page
 @app.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -55,14 +52,44 @@ def login():
         return "Invalid credentials!"
     return render_template("login.html")
 
-# User Home
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
+
+# ---------------- USER ROUTES ---------------- #
 @app.route('/index')
 def index():
     if "user_id" not in session or session["role"] != "user":
         return redirect(url_for("login"))
     return render_template("index.html")
 
-# Admin Dashboard
+@app.route('/upload', methods=["GET", "POST"])
+def upload():
+    if "user_id" not in session or session["role"] != "user":
+        return redirect(url_for("login"))
+
+    if request.method == "POST":
+        image = request.files["image"]
+        lat = request.form["latitude"]
+        lon = request.form["longitude"]
+
+        if image:
+            filename = f"{uuid.uuid4().hex}_{image.filename}"
+            filepath = os.path.join(UPLOAD_FOLDER, filename)
+            image.save(filepath)
+
+            conn = get_db()
+            conn.execute("INSERT INTO reports (user_id, image_path, latitude, longitude) VALUES (?, ?, ?, ?)",
+                         (session["user_id"], filepath, lat, lon))
+            conn.commit()
+            conn.close()
+
+            return "✅ Report submitted successfully!"
+
+    return render_template("upload.html")
+
+# ---------------- ADMIN ROUTES ---------------- #
 @app.route('/dashboard')
 def dashboard():
     if "user_id" not in session or session["role"] != "admin":
@@ -70,12 +97,6 @@ def dashboard():
     conn = get_db()
     reports = conn.execute("SELECT * FROM reports").fetchall()
     return render_template("dashboard.html", reports=reports)
-
-# Logout
-@app.route('/logout')
-def logout():
-    session.clear()
-    return redirect(url_for("login"))
 
 if __name__ == "__main__":
     app.run(debug=True)

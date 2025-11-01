@@ -1,0 +1,23 @@
+<h2>Admin Dashboard</h2>
+<table border="1" cellpadding="8">
+  <tr>
+    <th>ID</th>
+    <th>User ID</th>
+    <th>Image</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>Status</th>
+  </tr>
+  {% for r in reports %}
+  <tr>
+    <td>{{ r['id'] }}</td>
+    <td>{{ r['user_id'] }}</td>
+    <td><img src="{{ r['image_path'] }}" width="100"></td>
+    <td>{{ r['latitude'] }}</td>
+    <td>{{ r['longitude'] }}</td>
+    <td>{{ r['status'] }}</td>
+  </tr>
+  {% endfor %}
+</table>
+<br>
+<a href="/logout">Logout</a>
