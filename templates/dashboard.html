@@ -1,23 +1,74 @@
-<h2>Admin Dashboard</h2>
-<table border="1" cellpadding="8">
-  <tr>
-    <th>ID</th>
-    <th>User ID</th>
-    <th>Image</th>
-    <th>Latitude</th>
-    <th>Longitude</th>
-    <th>Status</th>
-  </tr>
-  {% for r in reports %}
-  <tr>
-    <td>{{ r['id'] }}</td>
-    <td>{{ r['user_id'] }}</td>
-    <td><img src="{{ r['image_path'] }}" width="100"></td>
-    <td>{{ r['latitude'] }}</td>
-    <td>{{ r['longitude'] }}</td>
-    <td>{{ r['status'] }}</td>
-  </tr>
-  {% endfor %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+
+  <link rel="stylesheet" href="/static/css/dashboard.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="logo">CleanCity Admin</div>
+  <div class="nav-links">
+    <a href="/dashboard">Reports</a>
+    <a href="/logout" class="logout-btn"><i data-feather="log-out"></i></a>
+  </div>
+</nav>
+
+<section class="page-header">
+  <h2>Incoming Waste Reports</h2>
+  <p>Review citizen complaints and update status</p>
+</section>
+
+<div class="table-wrapper">
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User</th>
+      <th>Image</th>
+      <th>Location</th>
+      <th>Status</th>
+      <th>Map</th>
+    </tr>
+  </thead>
+
+  <tbody id="reportTable">
+    <!-- Later filled by backend -->
+    <tr>
+      <td>101</td>
+      <td>user123</td>
+      <td><img src="/static/demo/trash.jpg"></td>
+      <td>Lat: 26.9124<br>Lng: 75.7873</td>
+      <td>
+        <select class="status-select">
+          <option>Pending</option>
+          <option>In Progress</option>
+          <option>Resolved</option>
+        </select>
+      </td>
+      <td><button class="map-btn">View</button></td>
+    </tr>
+  </tbody>
 </table>
-<br>
-<a href="/logout">Logout</a>
+</div>
+
+<div id="mapPopup" class="map-modal">
+  <div class="map-box">
+    <span id="closeMap">&times;</span>
+    <h3>Location</h3>
+    <div id="map"></div>
+  </div>
+</div>
+
+<script src="/static/js/dashboard.js"></script>
+<script>feather.replace()</script>
+</body>
+</html>
