@@ -1,7 +1,9 @@
-opencv-python
-opencv-contrib-python
-pandas
-numpy
+Flask
+flask-cors
+python-dotenv
+requests
+twilio
 ultralytics
-flask
-datasets
+opencv-python
+pillow
+sqlalchemy

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CleanCity | Report & Reward</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <!-- Styles -->
+  <style>
+    :root {
+      --primary: #28a745;
+      --secondary: #1f1f1f;
+      --accent: #f4f4f4;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #ffffff;
+      color: var(--secondary);
+      overflow-x: hidden;
+    }
+
+    /* ===== Navbar ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 60px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      z-index: 100;
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .nav-links a {
+      margin-left: 30px;
+      text-decoration: none;
+      color: var(--secondary);
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 120px 10%;
+      background: linear-gradient(120deg, #e8f5e9, #ffffff);
+    }
+
+    .text-area {
+      max-width: 600px;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .text-area h1 {
+      font-size: 3rem;
+      color: var(--secondary);
+      margin-bottom: 20px;
+    }
+
+    .text-area p {
+      color: #444;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: white;
+      padding: 12px 25px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+    }
+
+    .hero-img {
+      width: 420px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== Features ===== */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 80px 10%;
+      background: #f9f9f9;
+      text-align: center;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      transition: 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-card i {
+      color: var(--primary);
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+
+    /* ===== WhatsApp Section ===== */
+    .whatsapp-box {
+      text-align: center;
+      padding: 100px 10%;
+    }
+
+    .whatsapp-box img {
+      width: 160px;
+      margin: 20px 0;
+      border-radius: 10px;
+    }
+
+    .whatsapp-btn {
+      background: #25d366;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    }
+
+    /* ===== Admin Login ===== */
+    .admin-login {
+      text-align: center;
+      padding: 100px 10%;
+      background: linear-gradient(120deg, #e8f5e9, #ffffff);
+    }
+
+    .admin-login form {
+      background: white;
+      display: inline-block;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .admin-login input {
+      display: block;
+      width: 300px;
+      padding: 10px 15px;
+      margin: 10px auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .admin-login input:focus {
+      border-color: var(--primary);
+    }
+
+    .admin-login button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .admin-login button:hover {
+      background: #218838;
+    }
+
+    footer {
+      background: var(--secondary);
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    @media(max-width: 900px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 100px 5%;
+      }
+      .hero-img {
+        width: 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h2 class="logo">CleanCity</h2>
+    <div class="nav-links">
+      <a href="#report">Report</a>
+      <a href="#admin">Admin</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="report">
+    <div class="text-area">
+      <h1>Make Your City Cleaner</h1>
+      <p>Snap a photo of waste near you and help keep your city clean. Earn rewards for every valid report!</p>
+      <a href="report.html" class="btn"><i data-feather="upload"></i> Report Waste</a>
+    </div>
+    <img src="/static/images/clean-city-illustration.png" class="hero-img" alt="City Illustration" />
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="feature-card">
+      <i data-feather="users"></i>
+      <h3>Citizen First</h3>
+      <p>Simple and fast reporting for everyone.</p>
+    </div>
+    <div class="feature-card">
+      <i data-feather="cpu"></i>
+      <h3>AI Verification</h3>
+      <p>Images auto-verified using AI for accuracy.</p>
+    </div>
+    <div class="feature-card">
+      <i data-feather="award"></i>
+      <h3>Earn Rewards</h3>
+      <p>Get credits for verified clean-up reports.</p>
+    </div>
+  </section>
+
+  <!-- WhatsApp Section -->
+  <section class="whatsapp-box">
+    <h2>Report via WhatsApp</h2>
+    <p>Just scan and send a photo with your location!</p>
+    <img src="/static/images/qr.png" alt="WhatsApp QR" />
+    <a id="whatsappLink" href="#" class="btn whatsapp-btn">
+      <i data-feather="message-circle"></i> Start WhatsApp Report
+    </a>
+  </section>
+
+  <!-- Admin Login -->
+  <section class="admin-login" id="admin">
+    <h2>Admin Login</h2>
+    <form action="/login" method="POST">
+      <input type="text" name="username" placeholder="Admin Username" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 CleanCity Initiative | Designed for a Smarter Tomorrow
+  </footer>
+
+  <script>feather.replace();</script>
+</body>
+</html>
