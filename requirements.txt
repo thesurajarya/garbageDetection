@@ -1,0 +1,7 @@
+opencv-python
+opencv-contrib-python
+pandas
+numpy
+ultralytics
+flask
+datasets
